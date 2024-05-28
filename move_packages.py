@@ -27,13 +27,25 @@ def main(destination_profile_id):
         # Extract package names
         package_names = [line.split(":")[1] for line in installed_packages.splitlines()]
 
-        # Install each package in destination profile
-        for package in package_names:
-            command = f"{adb_path} shell pm install-existing --user {destination_profile_id} {package}"
-            result = execute_adb_command(command)
-            print(f"Installing {package} for user {destination_profile_id}: {result}")
-
-        print("All packages moved from source profile to destination profile.")
+        # Ask user if they want to copy all packages
+        user_input = input("Copy all installed packages to Destination Profile? (Y/N): ").strip().lower()
+        
+        if user_input == 'y':
+            # Install each package in destination profile
+            for package in package_names:
+                command = f"{adb_path} shell pm install-existing --user {destination_profile_id} {package}"
+                result = execute_adb_command(command)
+                print(f"Installing {package} for user {destination_profile_id}: {result}")
+        elif user_input == 'n':
+            # Prompt for each package
+            for package in package_names:
+                user_input = input(f"Do you want to copy the package {package} to the Destination Profile? (Y/N): ").strip().lower()
+                if user_input == 'y':
+                    command = f"{adb_path} shell pm install-existing --user {destination_profile_id} {package}"
+                    result = execute_adb_command(command)
+                    print(f"Installing {package} for user {destination_profile_id}: {result}")
+        
+        print("Package installation process completed.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Copy installed packages to a destination profile.')
