@@ -48,7 +48,12 @@ Thanks to [u/Fenopy](https://www.reddit.com/user/Fenopy/), a Reddit user, for th
 7. **Run the Script**:
    - Execute the script using Python:
      ```sh
-     python move_packages.py
+     python move_packages.py <profile_id>
+     ```
+     
+     Example:
+     ```sh
+     python move_packages.py 10
      ```
 
 ## Example Script
