@@ -1,9 +1,8 @@
 import subprocess
-import os
 import argparse
 
-# Full path to adb.exe
-adb_path = "<Path\\to\\adb\\adb.exe"
+# Full path to adb.exe # modify to your adb path if desired (example- c:\Android\android-sdk\platform-tools\adb.exe)
+adb_path = "adb.exe"
 
 
 # Function to execute adb command and get output
