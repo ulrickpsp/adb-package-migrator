@@ -35,15 +35,19 @@ Thanks to [u/Fenopy](https://www.reddit.com/user/Fenopy/), a Reddit user, for th
 
 5. **Get the List of Users on the Device**:
    - Use the following ADB command to list all users on the device:
+     - Linux/Mac:
      ```sh
      ./adb.exe shell pm list users
+     ```
+     - Windows:
+     ```cmd
+     adb.exe shell pm list users
      ```
    - Note down the user IDs for the profiles you want to migrate packages between.
 
 6. **Edit the Script**:
    - Open the `move_packages.py` file in a text editor or IDE.
    - Ensure the `adb_path` variable points to the correct path of `adb.exe` on your system.
-   - Update the user IDs in the script as needed.
 
 7. **Run the Script**:
    - Execute the script using Python:
@@ -52,7 +56,7 @@ Thanks to [u/Fenopy](https://www.reddit.com/user/Fenopy/), a Reddit user, for th
      ```
 
 ## Example Execution
-   Example:
+   - Example:
      ```sh
      python move_packages.py 10
      ```
