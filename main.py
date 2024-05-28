@@ -3,17 +3,17 @@ import os
 
 # Full path to adb.exe
 adb_path = "<Path\\to\\adb\\adb.exe"
-destination_profile_id = <YOUR_PROFILE_ID>
+destination_profile_id = 10
 
 
 # Function to execute adb command and get output
-def execute_adb_command(command):
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    if result.returncode != 0:
-        print(f"Error executing command: {command}")
-        print(f"Error message: {result.stderr.strip()}")
+def execute_adb_command(_command):
+    _result = subprocess.run(_command, shell=True, capture_output=True, text=True)
+    if _result.returncode != 0:
+        print(f"Error executing command: {_command}")
+        print(f"Error message: {_result.stderr.strip()}")
         return ""
-    return result.stdout.strip()
+    return _result.stdout.strip()
 
 
 # Construct the command to get the list of installed packages for source profile (user ID 0)
@@ -27,7 +27,7 @@ else:
     # Extract package names
     package_names = [line.split(":")[1] for line in installed_packages.splitlines()]
 
-    # Install each package in Ana's profile
+    # Install each package in destination profile
     for package in package_names:
         command = f"{adb_path} shell pm install-existing --user {destination_profile_id} {package}"
         result = execute_adb_command(command)
